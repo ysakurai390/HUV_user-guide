@@ -3,415 +3,1313 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>使い方・よくある質問 | NanoAct</title>
+  <title>使い方・よくある質問 | HUV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --bg: #f6f6f6;
-      --bg-accent: #efefef;
-      --panel: rgba(255, 255, 255, 0.94);
-      --line: #dddddd;
-      --line-strong: #cfcfcf;
-      --text: #1f1f1f;
-      --muted: #6a6a6a;
-      --soft: #f1f1f1;
-      --shadow: 0 18px 40px rgba(0, 0, 0, 0.06);
-      --shadow-hover: 0 22px 48px rgba(0, 0, 0, 0.09);
+      --accent:    #111111;
+      --accent-2:  #333333;
+      --green:     #1a9e6f;
+      --green-lt:  #e8f7f2;
+      --amber:     #d97706;
+      --amber-lt:  #fef3e2;
+      --red:       #dc2626;
+      --red-lt:    #fef2f2;
+      --blue:      #2563eb;
+      --blue-lt:   #eff6ff;
+      --bg:        #f8f8f6;
+      --surface:   #ffffff;
+      --border:    rgba(0,0,0,0.08);
+      --border-md: rgba(0,0,0,0.12);
+      --text:      #111111;
+      --text-2:    #444444;
+      --text-3:    #888888;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.04);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    * { box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
-      margin: 0;
-      font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+      font-family: "Noto Sans JP", "Inter", sans-serif;
       color: var(--text);
+      background: var(--bg);
       line-height: 1.7;
-      background:
-        radial-gradient(circle at top left, #ffffff 0%, transparent 34%),
-        radial-gradient(circle at bottom right, var(--bg-accent) 0%, transparent 28%),
-        var(--bg);
+      -webkit-font-smoothing: antialiased;
     }
 
-    .wrap {
-      width: min(920px, calc(100% - 32px));
+    /* ── Sticky Nav ── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(248,248,246,0.88);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+
+    .topbar-inner {
+      max-width: 900px;
       margin: 0 auto;
-      padding: 40px 0 56px;
-    }
-
-    .hero,
-    .section {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(8px);
-    }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      padding: 38px 34px 30px;
-      margin-bottom: 20px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(250,250,250,0.92) 100%);
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      top: -42px;
-      right: -12px;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(0,0,0,0.03), rgba(0,0,0,0));
-      pointer-events: none;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
-      margin-bottom: 14px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(255,255,255,0.9);
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #bdbdbd;
-      display: inline-block;
-    }
-
-    h1 {
-      margin: 0 0 12px;
-      font-size: clamp(32px, 5vw, 46px);
-      line-height: 1.12;
-      letter-spacing: -0.02em;
-      font-weight: 800;
-    }
-
-    .lead {
-      max-width: 640px;
-      margin: 0;
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .notice {
-      margin-top: 20px;
-      padding: 18px 18px;
-      background: linear-gradient(180deg, #fafafa 0%, #f2f2f2 100%);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-    }
-
-    .notice ul {
-      margin: 0 0 10px;
-      padding-left: 20px;
-    }
-
-    .notice p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .nav {
-      display: grid;
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .nav a {
+      height: 54px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
+    }
+
+    .topbar-logo {
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .topbar-logo .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .topbar-center {
+      display: flex;
+      gap: 4px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .topbar-center a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-3);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      transition: background var(--transition), color var(--transition);
+      white-space: nowrap;
+    }
+
+    .topbar-center a:hover {
+      background: rgba(0,0,0,0.05);
+      color: var(--text);
+    }
+
+    /* ── Language Switcher ── */
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      flex-shrink: 0;
+      background: rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 3px;
+    }
+
+    .lang-btn {
+      border: none;
+      background: none;
+      cursor: pointer;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-3);
+      transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+    }
+
+    .lang-btn:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.7);
+    }
+
+    .lang-btn.active {
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+
+    /* ── Main Wrapper ── */
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      padding: 48px 48px 40px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 100% 0%, rgba(26,158,111,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 0% 100%, rgba(37,99,235,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      background: var(--green-lt);
+      color: var(--green);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-badge svg { flex-shrink: 0; }
+
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 46px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 14px;
+      color: var(--text);
+    }
+
+    .hero-sub {
+      color: var(--text-3);
+      font-size: 15px;
+      font-weight: 400;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* ── Rules Banner ── */
+    .rules-banner {
+      margin-top: 28px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .rules-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      background: #f5f5f4;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .rules-header span {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--text-2);
+    }
+
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0;
+    }
+
+    .rule-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px 20px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .rule-item:last-child { border-right: 0; }
+
+    .rule-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 17px;
+    }
+
+    .rule-icon.red   { background: var(--red-lt); }
+    .rule-icon.amber { background: var(--amber-lt); }
+    .rule-icon.green { background: var(--green-lt); }
+    .rule-icon.blue  { background: var(--blue-lt); }
+
+    .rule-text {
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--text-2);
+      padding-top: 8px;
+    }
+
+    .rules-note {
+      padding: 12px 20px;
+      background: #fafaf9;
+      font-size: 12px;
+      color: var(--text-3);
+      line-height: 1.6;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Quick Nav Cards ── */
+    .quick-nav {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .quick-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 20px;
+      background: #f5f5f4;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
       text-decoration: none;
       color: var(--text);
-      background: rgba(255,255,255,0.96);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 16px 18px;
+      transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quick-card:hover {
+      background: var(--surface);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .quick-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .quick-card-label {
+      font-size: 14px;
       font-weight: 700;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
-      transition:
-        transform 0.18s ease,
-        box-shadow 0.18s ease,
-        border-color 0.18s ease,
-        background-color 0.18s ease;
+      letter-spacing: -0.01em;
+      flex: 1;
     }
 
-    .nav a::after {
-      content: "→";
-      color: var(--muted);
-      font-size: 18px;
-      transition: transform 0.18s ease;
+    .quick-card-arrow {
+      position: absolute;
+      bottom: 18px;
+      right: 18px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--text);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      transition: transform var(--transition);
     }
 
-    .nav a:hover {
-      background: var(--soft);
-      border-color: var(--line-strong);
-      box-shadow: var(--shadow-hover);
-      transform: translateY(-1px);
+    .quick-card:hover .quick-card-arrow {
+      transform: translate(2px, -2px);
     }
 
-    .nav a:hover::after {
-      transform: translateX(4px);
-    }
-
+    /* ── Section ── */
     .section {
-      padding: 28px 28px;
-      margin-bottom: 18px;
-      scroll-margin-top: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      margin-bottom: 20px;
+      overflow: hidden;
+      scroll-margin-top: 74px;
     }
 
-    h2 {
-      margin: 0 0 18px;
-      font-size: clamp(26px, 3.4vw, 34px);
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 28px 36px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      background: #f5f5f4;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .section h2 {
+      font-size: clamp(20px, 3vw, 26px);
+      font-weight: 800;
       letter-spacing: -0.02em;
       line-height: 1.2;
     }
 
-    h3 {
-      margin: 0 0 10px;
-      font-size: 21px;
-      line-height: 1.4;
+    .section-body { padding: 0; }
+
+    /* ── Steps ── */
+    .step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step:last-child { border-bottom: 0; }
+
+    .step-num {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 28px 0;
+    }
+
+    .step-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--border-md);
+      background: #f5f5f4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text-2);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-line {
+      width: 1px;
+      flex: 1;
+      background: var(--border);
+      margin-top: 6px;
+    }
+
+    .step:last-child .step-line { display: none; }
+
+    .step-content {
+      padding: 26px 32px 26px 0;
+    }
+
+    .step-content h3 {
+      font-size: 17px;
+      font-weight: 700;
       letter-spacing: -0.01em;
+      margin-bottom: 10px;
+      color: var(--text);
     }
 
-    .step,
-    .block,
-    .faq-item {
-      padding: 20px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .step:first-of-type,
-    .block:first-of-type,
-    .faq-item:first-of-type {
-      border-top: 0;
-      padding-top: 0;
-    }
-
-    p {
-      margin: 0 0 10px;
-      font-size: 15px;
-    }
-
-    ul {
-      margin: 10px 0 0;
-      padding-left: 20px;
-    }
-
-    li {
-      margin-bottom: 6px;
-    }
-
-    .faq-item strong {
-      display: block;
+    .step-content p {
+      font-size: 14px;
+      color: var(--text-2);
       margin-bottom: 8px;
-      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .step-content p:last-child { margin-bottom: 0; }
+
+    /* Mode cards */
+    .mode-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    .mode-card {
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+    }
+
+    .mode-card.slow {
+      background: var(--green-lt);
+      border-color: rgba(26,158,111,0.15);
+    }
+
+    .mode-card.fast {
+      background: var(--blue-lt);
+      border-color: rgba(37,99,235,0.1);
+    }
+
+    .mode-card-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+      opacity: 0.7;
+    }
+
+    .mode-card.slow .mode-card-label { color: var(--green); }
+    .mode-card.fast .mode-card-label { color: var(--blue); }
+
+    .mode-card-speed {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .mode-card.slow .mode-card-speed { color: var(--green); }
+    .mode-card.fast .mode-card-speed { color: var(--blue); }
+
+    .mode-card-desc {
+      font-size: 12px;
+      color: var(--text-3);
+      margin-top: 4px;
+    }
+
+    /* Tags */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .tag.warn {
+      background: var(--amber-lt);
+      color: var(--amber);
+    }
+
+    /* Info blocks */
+    .info-block {
+      display: flex;
+      gap: 14px;
+      padding: 20px 36px;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+
+    .info-block:last-child { border-bottom: 0; }
+
+    .info-icon {
+      font-size: 22px;
+      line-height: 1;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .info-content h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .info-content p {
+      font-size: 14px;
+      color: var(--text-2);
+      margin-bottom: 6px;
+      line-height: 1.7;
+    }
+
+    .info-content p:last-child { margin-bottom: 0; }
+
+    /* Checklist */
+    .checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 10px 0 0;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-2);
       line-height: 1.5;
     }
 
-    .faq-item p,
-    .block p,
-    .step p {
-      color: #2a2a2a;
+    .checklist li::before {
+      content: "";
+      width: 18px;
+      height: 18px;
+      border-radius: 5px;
+      border: 1.5px solid var(--green);
+      background: var(--green-lt);
+      flex-shrink: 0;
+      margin-top: 1px;
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='%231a9e6f' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
     }
 
-    .muted {
-      color: var(--muted);
+    /* ── FAQ ── */
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: 0; }
+
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      padding: 22px 36px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      transition: background var(--transition);
     }
 
-    @media (max-width: 640px) {
-      .wrap {
-        width: min(100%, calc(100% - 20px));
-        padding: 20px 0 40px;
-      }
+    .faq-q:hover { background: #fafaf9; }
+    .faq-q.open  { background: #fafaf9; }
 
-      .hero,
-      .section {
-        padding-left: 18px;
-        padding-right: 18px;
-        border-radius: 20px;
-      }
+    .faq-q-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #f0f0ee;
+      color: var(--text-3);
+      font-size: 13px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
 
-      .hero {
-        padding-top: 30px;
-      }
+    .faq-q-text {
+      flex: 1;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.5;
+    }
 
-      h1 {
-        font-size: 32px;
-      }
+    .faq-chevron {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1px solid var(--border-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 4px;
+      transition: transform var(--transition), background var(--transition);
+    }
 
-      h2 {
-        font-size: 28px;
-      }
+    .faq-q.open .faq-chevron {
+      transform: rotate(180deg);
+      background: var(--text);
+      border-color: var(--text);
+    }
 
-      h3 {
-        font-size: 19px;
-      }
+    .faq-q.open .faq-chevron svg { stroke: #fff; }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .faq-a-inner {
+      padding: 0 36px 22px 80px;
+    }
+
+    .faq-a-inner p {
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.75;
+      margin-bottom: 8px;
+    }
+
+    .faq-a-inner p:last-child { margin-bottom: 0; }
+
+    .faq-a-inner ul {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .faq-a-inner ul li {
+      font-size: 14px;
+      color: var(--text-2);
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .faq-a-inner ul li::before {
+      content: "•";
+      position: absolute;
+      left: 4px;
+      color: var(--text-3);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 32px 0 0;
+      font-size: 12px;
+      color: var(--text-3);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 680px) {
+      .topbar-center { display: none; }
+
+      .hero { padding: 32px 24px 28px; }
+
+      .quick-nav { grid-template-columns: 1fr; }
+
+      .rules-grid { grid-template-columns: 1fr 1fr; }
+      .rule-item:nth-child(2n) { border-right: 0; }
+      .rule-item:nth-last-child(-n+2) { border-bottom: 0; }
+
+      .section-header { padding: 22px 24px 20px; }
+
+      .step { grid-template-columns: 44px 1fr; }
+      .step-content { padding: 22px 20px 22px 0; }
+
+      .info-block { padding: 18px 24px; }
+
+      .mode-cards { grid-template-columns: 1fr; }
+
+      .faq-q { padding: 18px 20px; gap: 12px; }
+      .faq-a-inner { padding: 0 20px 18px 60px; }
+
+      .lang-btn { padding: 4px 7px; font-size: 11px; }
+    }
+
+    /* ── Fade-in ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── Lang transition ── */
+    [data-i18n], [data-i18n-html] {
+      transition: opacity 0.18s ease;
+    }
+
+    .lang-switching [data-i18n],
+    .lang-switching [data-i18n-html] {
+      opacity: 0;
     }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <section class="hero">
-      <span class="eyebrow">GUIDE & FAQ</span>
-      <h1>使い方・よくある質問</h1>
-      <p class="lead">ご利用前に、基本的なルールと操作方法、よくある質問をご確認ください。</p>
 
-      <div class="notice">
-        <ul>
-          <li>16歳未満は利用できません</li>
-          <li>1人乗り専用です</li>
-          <li>ヘルメットの着用をおすすめします</li>
-          <li>飲酒後の運転は禁止です</li>
-          <li>スマートフォンを見ながらの運転、傘さし運転はしないでください</li>
-        </ul>
-        <p>特定小型原付として、16歳以上・免許不要、ヘルメットは努力義務、交通ルール遵守が必要です。</p>
+  <!-- ── Sticky Navigation ── -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-logo">
+        <span class="dot"></span>
+        <span data-i18n="nav.logo">HUV ガイド</span>
       </div>
 
-      <nav class="nav">
-        <a href="#check">乗る前のチェック</a>
-        <a href="#howto">基本の使い方</a>
-        <a href="#faq">よくある質問</a>
+      <nav class="topbar-center">
+        <a href="#check" data-i18n="nav.check">乗る前の確認</a>
+        <a href="#howto" data-i18n="nav.howto">使い方</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
+      </nav>
+
+      <!-- Language Switcher -->
+      <div class="lang-switcher" role="group" aria-label="Language">
+        <button class="lang-btn active" data-lang="ja">日本語</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="zh">中文</button>
+        <button class="lang-btn" data-lang="ko">한국어</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- ── Hero ── -->
+    <section class="hero fade-up">
+      <div class="hero-badge">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+          <circle cx="5" cy="5" r="5" fill="#1a9e6f"/>
+        </svg>
+        GUIDE &amp; FAQ
+      </div>
+      <h1 data-i18n="hero.title">使い方・よくある質問</h1>
+      <p class="hero-sub" data-i18n="hero.sub">ご利用前に、基本的なルールと操作方法、よくある質問をご確認ください。</p>
+
+      <!-- Rules Banner -->
+      <div class="rules-banner">
+        <div class="rules-header">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M7 1.5L1.5 12.5H12.5L7 1.5Z" fill="#d97706" stroke="#d97706" stroke-width="0.5" stroke-linejoin="round"/>
+            <path d="M7 5.5V8.5M7 10V10.5" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          <span data-i18n="rules.header">ご利用にあたってのルール</span>
+        </div>
+        <div class="rules-grid">
+          <div class="rule-item">
+            <div class="rule-icon red">🔞</div>
+            <div class="rule-text" data-i18n-html="rules.age">16歳未満は<br>ご利用できません</div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-icon red">👤</div>
+            <div class="rule-text" data-i18n-html="rules.solo">1人乗り<br>専用です</div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-icon amber">⛑️</div>
+            <div class="rule-text" data-i18n-html="rules.helmet">ヘルメット着用を<br>おすすめします</div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-icon red">🍺</div>
+            <div class="rule-text" data-i18n-html="rules.alcohol">飲酒後の運転は<br>禁止です</div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-icon red">📱</div>
+            <div class="rule-text" data-i18n-html="rules.phone">スマートフォンを見ながらの<br>運転は禁止です</div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-icon red">☂️</div>
+            <div class="rule-text" data-i18n-html="rules.umbrella">傘さし運転は<br>禁止です</div>
+          </div>
+        </div>
+        <p class="rules-note" data-i18n="rules.note">特定小型原付として、16歳以上・免許不要、ヘルメットは努力義務、交通ルールの遵守が必要です。</p>
+      </div>
+
+      <!-- Quick Nav -->
+      <nav class="quick-nav">
+        <a href="#check" class="quick-card">
+          <div class="quick-card-icon">✅</div>
+          <div class="quick-card-label" data-i18n="nav.check">乗る前のチェック</div>
+          <div class="quick-card-arrow">↗</div>
+        </a>
+        <a href="#howto" class="quick-card">
+          <div class="quick-card-icon">🛵</div>
+          <div class="quick-card-label" data-i18n="nav.howto">基本の使い方</div>
+          <div class="quick-card-arrow">↗</div>
+        </a>
+        <a href="#faq" class="quick-card">
+          <div class="quick-card-icon">💬</div>
+          <div class="quick-card-label" data-i18n="nav.faq">よくある質問</div>
+          <div class="quick-card-arrow">↗</div>
+        </a>
       </nav>
     </section>
 
-    <section class="section" id="check">
-      <h2>乗る前のチェック</h2>
-      <div class="block">
-        <ul>
-          <li>シートはつま先が地面に付く高さに調整してください</li>
-          <li>ハンドルは無理のない高さにしてください</li>
-          <li>走り出す前にセンタースタンドが上がっていることを確認してください</li>
-        </ul>
-        <p>シートはMAX印を超えない範囲で調整し、ハンドル高さも調整可能です。走行時はセンタースタンドを確実に上げる必要があります。</p>
+    <!-- ── Section 1: Pre-ride Check ── -->
+    <section class="section fade-up" id="check">
+      <div class="section-header">
+        <div class="section-icon">✅</div>
+        <div>
+          <h2 data-i18n="nav.check">乗る前のチェック</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="info-block">
+          <div class="info-icon">🪑</div>
+          <div class="info-content">
+            <h3 data-i18n="check.seat.title">シートの高さ調整</h3>
+            <p data-i18n="check.seat.p1">シートはつま先が地面に付く高さに調整してください。</p>
+            <p data-i18n="check.seat.p2">シートはMAX印を超えない範囲で調整してください。</p>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-icon">🔧</div>
+          <div class="info-content">
+            <h3 data-i18n="check.handle.title">ハンドルの確認</h3>
+            <p data-i18n="check.handle.p1">ハンドルは無理のない高さに調整してください。高さ調整が可能です。</p>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-icon">🚲</div>
+          <div class="info-content">
+            <h3 data-i18n="check.stand.title">センタースタンドの確認</h3>
+            <p data-i18n="check.stand.p1">走り出す前に、センタースタンドが上がっていることを必ず確認してください。</p>
+            <p style="color: var(--red); font-size: 13px; font-weight: 600;" data-i18n="check.stand.warn">⚠️ スタンドが下りたまま走行すると危険です</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="howto">
-      <h2>基本の使い方</h2>
-
-      <div class="step">
-        <h3>1. 電源を入れる</h3>
-        <p>パワースイッチを約2秒長押ししてください。</p>
-        <p>電源を入れると、ライト類は自動で点灯します。</p>
+    <!-- ── Section 2: How to Use ── -->
+    <section class="section fade-up" id="howto">
+      <div class="section-header">
+        <div class="section-icon">🛵</div>
+        <div>
+          <h2 data-i18n="nav.howto">基本の使い方</h2>
+        </div>
       </div>
+      <div class="section-body">
 
-      <div class="step">
-        <h3>2. 走行モードを確認する</h3>
-        <p>この車両は2つのモードがあります。</p>
-        <ul>
-          <li>歩道可モード：最高 6km/h</li>
-          <li>車道専用モード：最高 20km/h</li>
-        </ul>
-        <p>モード切替は、停車中にブレーキを握った状態で行ってください。</p>
-        <p>電源を入れた直後は歩道可モードです。</p>
-      </div>
+        <div class="step">
+          <div class="step-num">
+            <div class="step-circle">1</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <h3 data-i18n="step1.title">電源を入れる</h3>
+            <p data-i18n-html="step1.p1">パワースイッチを約 <strong>2秒長押し</strong> してください。</p>
+            <p data-i18n="step1.p2">電源を入れると、ライト類は自動で点灯します。</p>
+          </div>
+        </div>
 
-      <div class="step">
-        <h3>3. 乗車する</h3>
-        <ul>
-          <li>左右のブレーキを握ってまたがってください</li>
-          <li>乗るときはスロットルに触れないでください</li>
-        </ul>
-      </div>
+        <div class="step">
+          <div class="step-num">
+            <div class="step-circle">2</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <h3 data-i18n="step2.title">走行モードを確認する</h3>
+            <p data-i18n="step2.p1">この車両には2つの走行モードがあります。</p>
+            <div class="mode-cards">
+              <div class="mode-card slow">
+                <div class="mode-card-label" data-i18n="step2.mode1.label">歩道可モード</div>
+                <div class="mode-card-speed">6 km/h</div>
+                <div class="mode-card-desc" data-i18n="step2.mode1.desc">歩道・車道どちらも走行可</div>
+              </div>
+              <div class="mode-card fast">
+                <div class="mode-card-label" data-i18n="step2.mode2.label">車道専用モード</div>
+                <div class="mode-card-speed">20 km/h</div>
+                <div class="mode-card-desc" data-i18n="step2.mode2.desc">車道のみ走行可</div>
+              </div>
+            </div>
+            <p data-i18n-html="step2.p2">モード切替は、<strong>停車中にブレーキを握った状態</strong>で行ってください。</p>
+            <p style="color: var(--text-3); font-size: 13px;" data-i18n="step2.p3">電源投入直後は「歩道可モード」になります。</p>
+          </div>
+        </div>
 
-      <div class="step">
-        <h3>4. 発進する</h3>
-        <p>右手側のスロットルをゆっくり回すと走り出します。</p>
-        <p>急に回すと急発進の恐れがあるため、ゆっくり操作してください。</p>
-      </div>
+        <div class="step">
+          <div class="step-num">
+            <div class="step-circle">3</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <h3 data-i18n="step3.title">乗車する</h3>
+            <ul class="checklist">
+              <li data-i18n="step3.li1">左右のブレーキを握ってからまたがってください</li>
+              <li data-i18n="step3.li2">乗るときはスロットルに触れないでください</li>
+            </ul>
+          </div>
+        </div>
 
-      <div class="step">
-        <h3>5. 止まる</h3>
-        <p>右レバーが前輪ブレーキ、左レバーが後輪ブレーキです。</p>
-        <p>止まるときは、スロットルから手を離して、前後のブレーキを一緒に使ってください。</p>
-      </div>
+        <div class="step">
+          <div class="step-num">
+            <div class="step-circle">4</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <h3 data-i18n="step4.title">発進する</h3>
+            <p data-i18n-html="step4.p1">右手側のスロットルを <strong>ゆっくり回す</strong> と走り出します。</p>
+            <div class="tag warn" data-i18n="step4.warn">⚠️ 急に回すと急発進の恐れあり</div>
+            <p data-i18n="step4.p2">必ずゆっくり操作してください。</p>
+          </div>
+        </div>
 
-      <div class="block">
-        <h3>操作方法</h3>
-        <p><strong>ウィンカー</strong></p>
-        <p>曲がる・進路変更のときはウィンカーを使ってください。</p>
-        <p>スイッチを右で右、左で左、中央に戻すと消灯です。</p>
-        <p>自動では戻らないので、消し忘れに注意してください。</p>
+        <div class="step">
+          <div class="step-num">
+            <div class="step-circle">5</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <h3 data-i18n="step5.title">止まる</h3>
+            <p data-i18n="step5.p1">スロットルから手を離し、前後ブレーキを一緒に使って停車します。</p>
+            <div class="mode-cards">
+              <div class="mode-card slow">
+                <div class="mode-card-label" data-i18n="step5.right.label">右レバー</div>
+                <div class="mode-card-speed" style="font-size:16px;" data-i18n="step5.right.val">前輪ブレーキ</div>
+              </div>
+              <div class="mode-card fast">
+                <div class="mode-card-label" data-i18n="step5.left.label">左レバー</div>
+                <div class="mode-card-speed" style="font-size:16px;" data-i18n="step5.left.val">後輪ブレーキ</div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <p style="margin-top:14px;"><strong>ホーン</strong></p>
-        <p>ホーンボタンを押すと鳴ります。</p>
-      </div>
+        <div class="info-block">
+          <div class="info-icon">📯</div>
+          <div class="info-content">
+            <h3 data-i18n="winker.title">ウィンカー</h3>
+            <p data-i18n="winker.p1">曲がる・進路変更のときはウィンカーを使ってください。</p>
+            <p data-i18n-html="winker.p2">スイッチを <strong>右に倒すと右</strong>、<strong>左に倒すと左</strong>、<strong>中央に戻すと消灯</strong>です。</p>
+            <div class="tag warn" data-i18n="winker.warn">⚠️ 自動では戻りません。消し忘れに注意</div>
+          </div>
+        </div>
 
-      <div class="block">
-        <h3>駐輪・返却</h3>
-        <ul>
-          <li>平らな場所に停めてください</li>
-          <li>センタースタンドを立ててください</li>
-          <li>必ず指定の返却場所へ戻してください</li>
-        </ul>
-        <p>駐輪時はセンタースタンドを使い、特定小型原付が駐輪可能な場所に停める必要があります。</p>
-      </div>
+        <div class="info-block">
+          <div class="info-icon">📢</div>
+          <div class="info-content">
+            <h3 data-i18n="horn.title">ホーン</h3>
+            <p data-i18n="horn.p1">ホーンボタンを押すと鳴ります。</p>
+          </div>
+        </div>
 
-      <div class="block">
-        <h3>雨の日について</h3>
-        <ul>
-          <li>強い雨・風の日は利用しないでください</li>
-          <li>濡れた路面、水たまり、滑りやすい道では注意してください</li>
-        </ul>
-        <p>完全防水ではなく、激しい雨や滑りやすい路面での運転は避けてください。</p>
+        <div class="info-block">
+          <div class="info-icon">🅿️</div>
+          <div class="info-content">
+            <h3 data-i18n="parking.title">駐輪・返却</h3>
+            <ul class="checklist">
+              <li data-i18n="parking.li1">平らな場所に停めてください</li>
+              <li data-i18n="parking.li2">センタースタンドを立ててください</li>
+              <li data-i18n="parking.li3">必ず指定の返却場所へ戻してください</li>
+            </ul>
+            <p style="margin-top:10px; font-size:13px; color:var(--text-3);" data-i18n="parking.note">特定小型原付が駐輪可能な場所に停める必要があります。</p>
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-icon">🌧️</div>
+          <div class="info-content">
+            <h3 data-i18n="rain.title">雨の日について</h3>
+            <ul class="checklist">
+              <li data-i18n="rain.li1">強い雨・風の日は利用しないでください</li>
+              <li data-i18n="rain.li2">濡れた路面・水たまり・滑りやすい道では十分注意してください</li>
+            </ul>
+            <p style="margin-top:10px; font-size:13px; color:var(--text-3);" data-i18n="rain.note">完全防水ではありません。激しい雨や滑りやすい路面での運転は避けてください。</p>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <section class="section" id="faq">
-      <h2>よくある質問</h2>
-
-      <div class="faq-item">
-        <strong>Q. 電源が入りません</strong>
-        <p>A. パワースイッチを2秒ほど長押ししてください。</p>
-        <p>それでも入らない場合は、サポートへご連絡ください。</p>
+    <!-- ── Section 3: FAQ ── -->
+    <section class="section fade-up" id="faq">
+      <div class="section-header">
+        <div class="section-icon">💬</div>
+        <div>
+          <h2 data-i18n="nav.faq">よくある質問</h2>
+        </div>
       </div>
+      <div class="section-body">
 
-      <div class="faq-item">
-        <strong>Q. 動きません</strong>
-        <p>A. まず以下を確認してください。</p>
-        <ul>
-          <li>センタースタンドが上がっているか</li>
-          <li>電源が入っているか</li>
-          <li>スロットルをゆっくり回しているか</li>
-        </ul>
-      </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+            <div class="faq-q-icon">Q</div>
+            <div class="faq-q-text" data-i18n="faq1.q">電源が入りません</div>
+            <div class="faq-chevron">
+              <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="#888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1L5 5L9 1"/></svg>
+            </div>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              <p data-i18n-html="faq1.a1">パワースイッチを <strong>2秒ほど長押し</strong> してください。</p>
+              <p data-i18n="faq1.a2">それでも入らない場合は、サポートへご連絡ください。</p>
+            </div>
+          </div>
+        </div>
 
-      <div class="faq-item">
-        <strong>Q. 速度が遅いです</strong>
-        <p>A. バッテリー残量が少ない可能性があります。</p>
-        <p class="muted">バッテリー残量が少ないと出力や速度が落ちることがあります。</p>
-      </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+            <div class="faq-q-icon">Q</div>
+            <div class="faq-q-text" data-i18n="faq2.q">動きません</div>
+            <div class="faq-chevron">
+              <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="#888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1L5 5L9 1"/></svg>
+            </div>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              <p data-i18n="faq2.a1">まず以下の項目を確認してください。</p>
+              <ul>
+                <li data-i18n="faq2.li1">センタースタンドが上がっているか</li>
+                <li data-i18n="faq2.li2">電源が入っているか</li>
+                <li data-i18n="faq2.li3">スロットルをゆっくり回しているか</li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
-      <div class="faq-item">
-        <strong>Q. 雨の日も使えますか</strong>
-        <p>A. 小雨程度でも路面状況に注意が必要です。</p>
-        <p>強い雨や滑りやすい路面では利用しないでください。</p>
-      </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+            <div class="faq-q-icon">Q</div>
+            <div class="faq-q-text" data-i18n="faq3.q">速度が遅いです</div>
+            <div class="faq-chevron">
+              <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="#888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1L5 5L9 1"/></svg>
+            </div>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              <p data-i18n="faq3.a1">バッテリー残量が少ない可能性があります。</p>
+              <p style="color:var(--text-3);" data-i18n="faq3.a2">バッテリー残量が少ないと、出力や速度が低下することがあります。</p>
+            </div>
+          </div>
+        </div>
 
-      <div class="faq-item">
-        <strong>Q. 2人乗りできますか</strong>
-        <p>A. できません。1人乗り専用です。仕様上の乗車定員は1名です。</p>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+            <div class="faq-q-icon">Q</div>
+            <div class="faq-q-text" data-i18n="faq4.q">雨の日も使えますか</div>
+            <div class="faq-chevron">
+              <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="#888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1L5 5L9 1"/></svg>
+            </div>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              <p data-i18n="faq4.a1">小雨程度でも路面状況に十分注意が必要です。</p>
+              <p data-i18n="faq4.a2">強い雨や滑りやすい路面では利用しないでください。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+            <div class="faq-q-icon">Q</div>
+            <div class="faq-q-text" data-i18n="faq5.q">2人乗りできますか</div>
+            <div class="faq-chevron">
+              <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="#888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1L5 5L9 1"/></svg>
+            </div>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              <p data-i18n-html="faq5.a1">できません。<strong>1人乗り専用</strong>です。仕様上の乗車定員は1名です。</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
+
+    <footer class="footer">
+      <p data-i18n="footer">HUV ガイド &nbsp;·&nbsp; ご不明な点はスタッフまでお気軽にお尋ねください</p>
+    </footer>
+
   </main>
+
+  <script>
+  const I18N = {
+    ja: {
+      "nav.logo":"HUV ガイド","nav.check":"乗る前のチェック","nav.howto":"基本の使い方","nav.faq":"よくある質問",
+      "hero.title":"使い方・よくある質問","hero.sub":"ご利用前に、基本的なルールと操作方法、よくある質問をご確認ください。",
+      "rules.header":"ご利用にあたってのルール","rules.age":"16歳未満は<br>ご利用できません","rules.solo":"1人乗り<br>専用です",
+      "rules.helmet":"ヘルメット着用を<br>おすすめします","rules.alcohol":"飲酒後の運転は<br>禁止です",
+      "rules.phone":"スマートフォンを見ながらの<br>運転は禁止です","rules.umbrella":"傘さし運転は<br>禁止です",
+      "rules.note":"特定小型原付として、16歳以上・免許不要、ヘルメットは努力義務、交通ルールの遵守が必要です。",
+      "check.seat.title":"シートの高さ調整","check.seat.p1":"シートはつま先が地面に付く高さに調整してください。","check.seat.p2":"シートはMAX印を超えない範囲で調整してください。",
+      "check.handle.title":"ハンドルの確認","check.handle.p1":"ハンドルは無理のない高さに調整してください。高さ調整が可能です。",
+      "check.stand.title":"センタースタンドの確認","check.stand.p1":"走り出す前に、センタースタンドが上がっていることを必ず確認してください。","check.stand.warn":"⚠️ スタンドが下りたまま走行すると危険です",
+      "step1.title":"電源を入れる","step1.p1":"パワースイッチを約 <strong>2秒長押し</strong> してください。","step1.p2":"電源を入れると、ライト類は自動で点灯します。",
+      "step2.title":"走行モードを確認する","step2.p1":"この車両には2つの走行モードがあります。","step2.mode1.label":"歩道可モード","step2.mode1.desc":"歩道・車道どちらも走行可","step2.mode2.label":"車道専用モード","step2.mode2.desc":"車道のみ走行可",
+      "step2.p2":"モード切替は、<strong>停車中にブレーキを握った状態</strong>で行ってください。","step2.p3":"電源投入直後は「歩道可モード」になります。",
+      "step3.title":"乗車する","step3.li1":"左右のブレーキを握ってからまたがってください","step3.li2":"乗るときはスロットルに触れないでください",
+      "step4.title":"発進する","step4.p1":"右手側のスロットルを <strong>ゆっくり回す</strong> と走り出します。","step4.warn":"⚠️ 急に回すと急発進の恐れあり","step4.p2":"必ずゆっくり操作してください。",
+      "step5.title":"止まる","step5.p1":"スロットルから手を離し、前後ブレーキを一緒に使って停車します。","step5.right.label":"右レバー","step5.right.val":"前輪ブレーキ","step5.left.label":"左レバー","step5.left.val":"後輪ブレーキ",
+      "winker.title":"ウィンカー","winker.p1":"曲がる・進路変更のときはウィンカーを使ってください。","winker.p2":"スイッチを <strong>右に倒すと右</strong>、<strong>左に倒すと左</strong>、<strong>中央に戻すと消灯</strong>です。","winker.warn":"⚠️ 自動では戻りません。消し忘れに注意",
+      "horn.title":"ホーン","horn.p1":"ホーンボタンを押すと鳴ります。",
+      "parking.title":"駐輪・返却","parking.li1":"平らな場所に停めてください","parking.li2":"センタースタンドを立ててください","parking.li3":"必ず指定の返却場所へ戻してください","parking.note":"特定小型原付が駐輪可能な場所に停める必要があります。",
+      "rain.title":"雨の日について","rain.li1":"強い雨・風の日は利用しないでください","rain.li2":"濡れた路面・水たまり・滑りやすい道では十分注意してください","rain.note":"完全防水ではありません。激しい雨や滑りやすい路面での運転は避けてください。",
+      "faq1.q":"電源が入りません","faq1.a1":"パワースイッチを <strong>2秒ほど長押し</strong> してください。","faq1.a2":"それでも入らない場合は、サポートへご連絡ください。",
+      "faq2.q":"動きません","faq2.a1":"まず以下の項目を確認してください。","faq2.li1":"センタースタンドが上がっているか","faq2.li2":"電源が入っているか","faq2.li3":"スロットルをゆっくり回しているか",
+      "faq3.q":"速度が遅いです","faq3.a1":"バッテリー残量が少ない可能性があります。","faq3.a2":"バッテリー残量が少ないと、出力や速度が低下することがあります。",
+      "faq4.q":"雨の日も使えますか","faq4.a1":"小雨程度でも路面状況に十分注意が必要です。","faq4.a2":"強い雨や滑りやすい路面では利用しないでください。",
+      "faq5.q":"2人乗りできますか","faq5.a1":"できません。<strong>1人乗り専用</strong>です。仕様上の乗車定員は1名です。",
+      "footer":"HUV ガイド &nbsp;·&nbsp; ご不明な点はスタッフまでお気軽にお尋ねください"
+    },
+    en: {
+      "nav.logo":"HUV Guide","nav.check":"Pre-ride Check","nav.howto":"How to Use","nav.faq":"FAQ",
+      "hero.title":"How to Use & FAQ","hero.sub":"Please review the basic rules, operating instructions, and frequently asked questions before use.",
+      "rules.header":"Usage Rules","rules.age":"Not available for<br>riders under 16","rules.solo":"Single rider<br>only",
+      "rules.helmet":"Helmet use is<br>recommended","rules.alcohol":"No riding under<br>the influence",
+      "rules.phone":"No phone use<br>while riding","rules.umbrella":"No riding with<br>an umbrella",
+      "rules.note":"Classified as a compact motorized vehicle: riders must be 16+, no license required, helmet strongly recommended, traffic rules apply.",
+      "check.seat.title":"Seat Height Adjustment","check.seat.p1":"Adjust the seat so that your toes can touch the ground.","check.seat.p2":"Do not raise the seat above the MAX mark.",
+      "check.handle.title":"Handlebar Check","check.handle.p1":"Adjust the handlebar to a comfortable height. Height is adjustable.",
+      "check.stand.title":"Center Stand Check","check.stand.p1":"Before riding, always confirm that the center stand is fully raised.","check.stand.warn":"⚠️ Riding with the stand down is dangerous",
+      "step1.title":"Power On","step1.p1":"Press and hold the power switch for about <strong>2 seconds</strong>.","step1.p2":"Lights will turn on automatically when powered on.",
+      "step2.title":"Check Riding Mode","step2.p1":"This vehicle has two riding modes.","step2.mode1.label":"Sidewalk Mode","step2.mode1.desc":"Sidewalk & road allowed","step2.mode2.label":"Road Mode","step2.mode2.desc":"Road only",
+      "step2.p2":"Switch modes <strong>while stopped with the brake held</strong>.","step2.p3":"The vehicle starts in Sidewalk Mode after power on.",
+      "step3.title":"Mount the Vehicle","step3.li1":"Squeeze both brakes before mounting","step3.li2":"Do not touch the throttle while mounting",
+      "step4.title":"Start Moving","step4.p1":"Slowly turn the throttle on the right side to move forward.","step4.warn":"⚠️ Sudden rotation may cause sudden acceleration","step4.p2":"Always operate slowly and carefully.",
+      "step5.title":"Stop","step5.p1":"Release the throttle and apply both front and rear brakes together.","step5.right.label":"Right Lever","step5.right.val":"Front Brake","step5.left.label":"Left Lever","step5.left.val":"Rear Brake",
+      "winker.title":"Turn Signal","winker.p1":"Use the turn signal when turning or changing lanes.","winker.p2":"<strong>Right</strong> = right turn, <strong>Left</strong> = left turn, <strong>Center</strong> = off.","winker.warn":"⚠️ Signal does not cancel automatically. Remember to turn it off.",
+      "horn.title":"Horn","horn.p1":"Press the horn button to sound it.",
+      "parking.title":"Parking & Return","parking.li1":"Park on a flat surface","parking.li2":"Use the center stand","parking.li3":"Always return to the designated location","parking.note":"Park only in areas designated for compact motorized vehicles.",
+      "rain.title":"Rainy Day Use","rain.li1":"Do not use in heavy rain or strong wind","rain.li2":"Use extra caution on wet roads, puddles, or slippery surfaces","rain.note":"This vehicle is not fully waterproof. Avoid riding in heavy rain or on slippery roads.",
+      "faq1.q":"The power won't turn on","faq1.a1":"Press and hold the power switch for about <strong>2 seconds</strong>.","faq1.a2":"If it still doesn't turn on, please contact support.",
+      "faq2.q":"The vehicle won't move","faq2.a1":"Please check the following items first.","faq2.li1":"Is the center stand raised?","faq2.li2":"Is the power on?","faq2.li3":"Are you turning the throttle slowly?",
+      "faq3.q":"The speed is slow","faq3.a1":"The battery may be low.","faq3.a2":"Low battery can reduce power output and speed.",
+      "faq4.q":"Can I use it on a rainy day?","faq4.a1":"Even light rain requires careful attention to road conditions.","faq4.a2":"Do not use in heavy rain or on slippery roads.",
+      "faq5.q":"Can two people ride?","faq5.a1":"No. This is a <strong>single rider only</strong> vehicle. The rated capacity is 1 person.",
+      "footer":"HUV Guide &nbsp;·&nbsp; Please ask staff if you have any questions"
+    },
+    zh: {
+      "nav.logo":"HUV 使用指南","nav.check":"骑行前检查","nav.howto":"基本使用方法","nav.faq":"常见问题",
+      "hero.title":"使用方法与常见问题","hero.sub":"使用前，请确认基本规则、操作方法及常见问题。",
+      "rules.header":"使用规则","rules.age":"16岁以下<br>禁止使用","rules.solo":"仅限<br>单人乘坐",
+      "rules.helmet":"建议佩戴<br>头盔","rules.alcohol":"饮酒后<br>禁止驾驶",
+      "rules.phone":"骑行时<br>禁止使用手机","rules.umbrella":"禁止<br>撑伞骑行",
+      "rules.note":"本车辆属于小型电动车，16岁以上可骑行、无需驾照，建议佩戴头盔，须遵守交通规则。",
+      "check.seat.title":"座椅高度调整","check.seat.p1":"请将座椅调整至脚尖能够触地的高度。","check.seat.p2":"请勿将座椅调整超过MAX标记位置。",
+      "check.handle.title":"车把确认","check.handle.p1":"请将车把调整至舒适高度，车把高度可调节。",
+      "check.stand.title":"中置支架确认","check.stand.p1":"骑行前，请务必确认中置支架已收起。","check.stand.warn":"⚠️ 支架未收起时骑行非常危险",
+      "step1.title":"开启电源","step1.p1":"长按电源开关约 <strong>2秒</strong>。","step1.p2":"开启电源后，车灯会自动亮起。",
+      "step2.title":"确认骑行模式","step2.p1":"本车辆有两种骑行模式。","step2.mode1.label":"人行道模式","step2.mode1.desc":"可在人行道和车道行驶","step2.mode2.label":"车道专用模式","step2.mode2.desc":"仅限在车道行驶",
+      "step2.p2":"切换模式请在<strong>停车状态下握住刹车</strong>进行操作。","step2.p3":"开机后默认为「人行道模式」。",
+      "step3.title":"上车","step3.li1":"握住两侧刹车后再骑上车","step3.li2":"上车时请勿触碰油门",
+      "step4.title":"起步","step4.p1":"缓慢转动右侧油门即可起步。","step4.warn":"⚠️ 猛转油门可能导致急加速","step4.p2":"请务必缓慢操作。",
+      "step5.title":"停车","step5.p1":"松开油门，同时使用前后刹车停车。","step5.right.label":"右刹车杆","step5.right.val":"前轮刹车","step5.left.label":"左刹车杆","step5.left.val":"后轮刹车",
+      "winker.title":"转向灯","winker.p1":"转弯或变道时请使用转向灯。","winker.p2":"开关<strong>向右为右转</strong>，<strong>向左为左转</strong>，<strong>回中间为关闭</strong>。","winker.warn":"⚠️ 不会自动复位，注意关闭转向灯",
+      "horn.title":"喇叭","horn.p1":"按喇叭按钮即可鸣响。",
+      "parking.title":"停车与归还","parking.li1":"请停在平坦的地方","parking.li2":"请撑起中置支架","parking.li3":"请务必归还至指定停车地点","parking.note":"请停在允许小型电动车停放的区域。",
+      "rain.title":"雨天使用注意","rain.li1":"大雨或强风天气请勿使用","rain.li2":"在湿滑路面、积水区域或易滑路段请特别注意","rain.note":"本车辆非完全防水，请避免在大雨或湿滑路面上骑行。",
+      "faq1.q":"无法开机","faq1.a1":"请长按电源开关约 <strong>2秒</strong>。","faq1.a2":"如仍无法开机，请联系工作人员。",
+      "faq2.q":"车辆无法行驶","faq2.a1":"请先确认以下事项。","faq2.li1":"中置支架是否已收起？","faq2.li2":"电源是否已开启？","faq2.li3":"是否缓慢转动了油门？",
+      "faq3.q":"速度很慢","faq3.a1":"可能是电池电量不足。","faq3.a2":"电量不足时，输出功率和速度可能会降低。",
+      "faq4.q":"雨天可以使用吗？","faq4.a1":"即使是小雨，也需要特别注意路面状况。","faq4.a2":"大雨或湿滑路面请勿使用。",
+      "faq5.q":"可以双人乘坐吗？","faq5.a1":"不可以。本车辆为<strong>单人乘坐专用</strong>，额定乘员为1人。",
+      "footer":"HUV 使用指南 &nbsp;·&nbsp; 如有疑问，请随时咨询工作人员"
+    },
+    ko: {
+      "nav.logo":"HUV 가이드","nav.check":"승차 전 확인","nav.howto":"기본 사용법","nav.faq":"자주 묻는 질문",
+      "hero.title":"사용 방법 및 자주 묻는 질문","hero.sub":"이용 전에 기본 규칙, 조작 방법, 자주 묻는 질문을 확인해 주세요.",
+      "rules.header":"이용 규칙","rules.age":"16세 미만은<br>이용 불가","rules.solo":"1인 탑승<br>전용",
+      "rules.helmet":"헬멧 착용을<br>권장합니다","rules.alcohol":"음주 후<br>운전 금지",
+      "rules.phone":"스마트폰을 보면서<br>운전 금지","rules.umbrella":"우산을 쓰면서<br>운전 금지",
+      "rules.note":"소형 전동 이동수단으로 16세 이상·면허 불필요, 헬멧 착용 권장, 교통 법규 준수가 필요합니다.",
+      "check.seat.title":"안장 높이 조절","check.seat.p1":"발끝이 지면에 닿는 높이로 안장을 조절해 주세요.","check.seat.p2":"안장은 MAX 표시를 넘지 않는 범위에서 조절해 주세요.",
+      "check.handle.title":"핸들 확인","check.handle.p1":"핸들을 편안한 높이로 조절해 주세요. 높이 조절이 가능합니다.",
+      "check.stand.title":"센터 스탠드 확인","check.stand.p1":"출발 전에 센터 스탠드가 올라가 있는지 반드시 확인해 주세요.","check.stand.warn":"⚠️ 스탠드가 내려진 채 주행하면 위험합니다",
+      "step1.title":"전원 켜기","step1.p1":"파워 스위치를 약 <strong>2초 길게 누르세요</strong>.","step1.p2":"전원을 켜면 라이트가 자동으로 켜집니다.",
+      "step2.title":"주행 모드 확인","step2.p1":"이 차량에는 두 가지 주행 모드가 있습니다.","step2.mode1.label":"보도 주행 모드","step2.mode1.desc":"보도·차도 모두 주행 가능","step2.mode2.label":"차도 전용 모드","step2.mode2.desc":"차도만 주행 가능",
+      "step2.p2":"모드 전환은 <strong>정차 중 브레이크를 잡은 상태</strong>에서 하세요.","step2.p3":"전원을 켜면 기본값은 「보도 주행 모드」입니다.",
+      "step3.title":"승차","step3.li1":"좌우 브레이크를 잡고 탑승하세요","step3.li2":"탑승 시 스로틀을 건드리지 마세요",
+      "step4.title":"출발","step4.p1":"오른쪽 스로틀을 <strong>천천히 돌리면</strong> 출발합니다.","step4.warn":"⚠️ 갑자기 돌리면 급출발 위험","step4.p2":"반드시 천천히 조작해 주세요.",
+      "step5.title":"정지","step5.p1":"스로틀에서 손을 떼고 앞뒤 브레이크를 함께 사용해 정지하세요.","step5.right.label":"오른쪽 레버","step5.right.val":"앞바퀴 브레이크","step5.left.label":"왼쪽 레버","step5.left.val":"뒷바퀴 브레이크",
+      "winker.title":"방향 지시등","winker.p1":"회전하거나 차선 변경 시 방향 지시등을 사용해 주세요.","winker.p2":"스위치를 <strong>오른쪽으로 기울이면 우회전</strong>, <strong>왼쪽은 좌회전</strong>, <strong>중앙으로 돌리면 끄기</strong>입니다.","winker.warn":"⚠️ 자동으로 복귀되지 않으니 끄는 것을 잊지 마세요",
+      "horn.title":"경적","horn.p1":"경적 버튼을 누르면 울립니다.",
+      "parking.title":"주차 및 반납","parking.li1":"평평한 곳에 주차해 주세요","parking.li2":"센터 스탠드를 세워 주세요","parking.li3":"반드시 지정된 반납 장소에 돌려주세요","parking.note":"소형 전동 이동수단 주차 가능 구역에만 주차해 주세요.",
+      "rain.title":"우천 시 주의","rain.li1":"강한 비·바람이 부는 날은 이용하지 마세요","rain.li2":"젖은 노면, 물웅덩이, 미끄러운 도로에서는 주의하세요","rain.note":"완전 방수가 아닙니다. 강한 비나 미끄러운 노면에서의 주행은 피해 주세요.",
+      "faq1.q":"전원이 켜지지 않습니다","faq1.a1":"파워 스위치를 약 <strong>2초 길게 눌러</strong> 주세요.","faq1.a2":"그래도 켜지지 않으면 스태프에게 문의해 주세요.",
+      "faq2.q":"차량이 움직이지 않습니다","faq2.a1":"먼저 다음 항목을 확인해 주세요.","faq2.li1":"센터 스탠드가 올라가 있는지","faq2.li2":"전원이 켜져 있는지","faq2.li3":"스로틀을 천천히 돌리고 있는지",
+      "faq3.q":"속도가 느립니다","faq3.a1":"배터리 잔량이 부족할 수 있습니다.","faq3.a2":"배터리가 부족하면 출력과 속도가 떨어질 수 있습니다.",
+      "faq4.q":"우천 시에도 사용할 수 있나요?","faq4.a1":"가랑비에도 노면 상황에 충분히 주의가 필요합니다.","faq4.a2":"강한 비나 미끄러운 노면에서는 이용하지 마세요.",
+      "faq5.q":"2인 탑승이 가능한가요?","faq5.a1":"불가능합니다. <strong>1인 탑승 전용</strong>입니다. 정격 탑승 인원은 1명입니다.",
+      "footer":"HUV 가이드 &nbsp;·&nbsp; 궁금한 점은 스태프에게 편하게 문의해 주세요"
+    }
+  };
+
+  const LANG_FONT = {
+    ja: '"Noto Sans JP", "Inter", sans-serif',
+    en: '"Inter", sans-serif',
+    zh: '"Noto Sans SC", "Inter", sans-serif',
+    ko: '"Noto Sans KR", "Inter", sans-serif'
+  };
+
+  function applyLang(lang) {
+    const dict = I18N[lang];
+    if (!dict) return;
+    document.body.classList.add('lang-switching');
+    setTimeout(() => {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key] !== undefined) el.textContent = dict[key];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (dict[key] !== undefined) el.innerHTML = dict[key];
+      });
+      document.documentElement.lang = lang;
+      document.body.style.fontFamily = LANG_FONT[lang];
+      const titles = { ja:'使い方・よくある質問 | HUV', en:'How to Use & FAQ | HUV', zh:'使用方法与常见问题 | HUV', ko:'사용 방법 및 FAQ | HUV' };
+      document.title = titles[lang] || 'HUV Guide';
+      document.body.classList.remove('lang-switching');
+    }, 120);
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+  });
+
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+    document.querySelectorAll('.faq-q').forEach(b => {
+      b.classList.remove('open');
+      b.setAttribute('aria-expanded', 'false');
+      b.nextElementSibling.style.maxHeight = '0';
+    });
+    if (!isOpen) {
+      btn.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 0.08}s`;
+    observer.observe(el);
+  });
+  </script>
+
 </body>
 </html>
