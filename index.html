@@ -32,10 +32,10 @@
       --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
       --shadow-md: 0 4px 16px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.04);
       --shadow-lg: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
-      --radius-sm: 10px;
-      --radius-md: 16px;
-      --radius-lg: 24px;
-      --radius-xl: 32px;
+      --radius-sm: 0;
+      --radius-md: 0;
+      --radius-lg: 0;
+      --radius-xl: 0;
       --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -72,21 +72,15 @@
     }
 
     .topbar-logo {
-      font-weight: 800;
-      font-size: 15px;
-      letter-spacing: 0.04em;
-      color: var(--text);
       display: flex;
       align-items: center;
-      gap: 8px;
       flex-shrink: 0;
     }
 
-    .topbar-logo .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--green);
+    .topbar-logo img {
+      display: block;
+      width: auto;
+      height: 28px;
     }
 
     .topbar-center {
@@ -120,7 +114,7 @@
       flex-shrink: 0;
       background: rgba(0,0,0,0.04);
       border: 1px solid var(--border);
-      border-radius: 999px;
+      border-radius: 0;
       padding: 3px;
     }
 
@@ -129,7 +123,7 @@
       background: none;
       cursor: pointer;
       padding: 4px 10px;
-      border-radius: 999px;
+      border-radius: 0;
       font-size: 12px;
       font-weight: 600;
       color: var(--text-3);
@@ -185,7 +179,7 @@
       padding: 5px 12px;
       background: var(--green-lt);
       color: var(--green);
-      border-radius: 999px;
+      border-radius: 0;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.1em;
@@ -342,7 +336,7 @@
       right: 18px;
       width: 24px;
       height: 24px;
-      border-radius: 50%;
+      border-radius: 0;
       background: var(--text);
       color: #fff;
       display: flex;
@@ -416,7 +410,7 @@
     .step-circle {
       width: 32px;
       height: 32px;
-      border-radius: 50%;
+      border-radius: 0;
       border: 2px solid var(--border-md);
       background: #f5f5f4;
       display: flex;
@@ -517,7 +511,7 @@
       align-items: center;
       gap: 4px;
       padding: 3px 10px;
-      border-radius: 999px;
+      border-radius: 0;
       font-size: 12px;
       font-weight: 600;
       margin-bottom: 8px;
@@ -584,7 +578,7 @@
       content: "";
       width: 18px;
       height: 18px;
-      border-radius: 5px;
+      border-radius: 0;
       border: 1.5px solid var(--green);
       background: var(--green-lt);
       flex-shrink: 0;
@@ -617,7 +611,7 @@
     .faq-q-icon {
       width: 28px;
       height: 28px;
-      border-radius: 50%;
+      border-radius: 0;
       background: #f0f0ee;
       color: var(--text-3);
       font-size: 13px;
@@ -640,7 +634,7 @@
     .faq-chevron {
       width: 20px;
       height: 20px;
-      border-radius: 50%;
+      border-radius: 0;
       border: 1px solid var(--border-md);
       display: flex;
       align-items: center;
@@ -701,14 +695,6 @@
       color: var(--text-3);
     }
 
-    /* ── Footer ── */
-    .footer {
-      text-align: center;
-      padding: 32px 0 0;
-      font-size: 12px;
-      color: var(--text-3);
-    }
-
     /* ── Responsive ── */
     @media (max-width: 680px) {
       .topbar-center { display: none; }
@@ -765,8 +751,7 @@
   <header class="topbar">
     <div class="topbar-inner">
       <div class="topbar-logo">
-        <span class="dot"></span>
-        <span data-i18n="nav.logo">HUV ガイド</span>
+        <img src="./assets/huv-logo-transparent-trimmed.png" alt="HUV" />
       </div>
 
       <nav class="topbar-center">
@@ -1128,16 +1113,12 @@
       </div>
     </section>
 
-    <footer class="footer">
-      <p data-i18n="footer">HUV ガイド &nbsp;·&nbsp; ご不明な点はスタッフまでお気軽にお尋ねください</p>
-    </footer>
-
   </main>
 
   <script>
   const I18N = {
     ja: {
-      "nav.logo":"HUV ガイド","nav.check":"乗る前のチェック","nav.howto":"基本の使い方","nav.faq":"よくある質問",
+      "nav.check":"乗る前のチェック","nav.howto":"基本の使い方","nav.faq":"よくある質問",
       "hero.title":"使い方・よくある質問","hero.sub":"ご利用前に、基本的なルールと操作方法、よくある質問をご確認ください。",
       "rules.header":"ご利用にあたってのルール","rules.age":"16歳未満は<br>ご利用できません","rules.solo":"1人乗り<br>専用です",
       "rules.helmet":"ヘルメット着用を<br>おすすめします","rules.alcohol":"飲酒後の運転は<br>禁止です",
@@ -1160,11 +1141,10 @@
       "faq2.q":"動きません","faq2.a1":"まず以下の項目を確認してください。","faq2.li1":"センタースタンドが上がっているか","faq2.li2":"電源が入っているか","faq2.li3":"スロットルをゆっくり回しているか",
       "faq3.q":"速度が遅いです","faq3.a1":"バッテリー残量が少ない可能性があります。","faq3.a2":"バッテリー残量が少ないと、出力や速度が低下することがあります。",
       "faq4.q":"雨の日も使えますか","faq4.a1":"小雨程度でも路面状況に十分注意が必要です。","faq4.a2":"強い雨や滑りやすい路面では利用しないでください。",
-      "faq5.q":"2人乗りできますか","faq5.a1":"できません。<strong>1人乗り専用</strong>です。仕様上の乗車定員は1名です。",
-      "footer":"HUV ガイド &nbsp;·&nbsp; ご不明な点はスタッフまでお気軽にお尋ねください"
+      "faq5.q":"2人乗りできますか","faq5.a1":"できません。<strong>1人乗り専用</strong>です。仕様上の乗車定員は1名です。"
     },
     en: {
-      "nav.logo":"HUV Guide","nav.check":"Pre-ride Check","nav.howto":"How to Use","nav.faq":"FAQ",
+      "nav.check":"Pre-ride Check","nav.howto":"How to Use","nav.faq":"FAQ",
       "hero.title":"How to Use & FAQ","hero.sub":"Please review the basic rules, operating instructions, and frequently asked questions before use.",
       "rules.header":"Usage Rules","rules.age":"Not available for<br>riders under 16","rules.solo":"Single rider<br>only",
       "rules.helmet":"Helmet use is<br>recommended","rules.alcohol":"No riding under<br>the influence",
@@ -1187,11 +1167,10 @@
       "faq2.q":"The vehicle won't move","faq2.a1":"Please check the following items first.","faq2.li1":"Is the center stand raised?","faq2.li2":"Is the power on?","faq2.li3":"Are you turning the throttle slowly?",
       "faq3.q":"The speed is slow","faq3.a1":"The battery may be low.","faq3.a2":"Low battery can reduce power output and speed.",
       "faq4.q":"Can I use it on a rainy day?","faq4.a1":"Even light rain requires careful attention to road conditions.","faq4.a2":"Do not use in heavy rain or on slippery roads.",
-      "faq5.q":"Can two people ride?","faq5.a1":"No. This is a <strong>single rider only</strong> vehicle. The rated capacity is 1 person.",
-      "footer":"HUV Guide &nbsp;·&nbsp; Please ask staff if you have any questions"
+      "faq5.q":"Can two people ride?","faq5.a1":"No. This is a <strong>single rider only</strong> vehicle. The rated capacity is 1 person."
     },
     zh: {
-      "nav.logo":"HUV 使用指南","nav.check":"骑行前检查","nav.howto":"基本使用方法","nav.faq":"常见问题",
+      "nav.check":"骑行前检查","nav.howto":"基本使用方法","nav.faq":"常见问题",
       "hero.title":"使用方法与常见问题","hero.sub":"使用前，请确认基本规则、操作方法及常见问题。",
       "rules.header":"使用规则","rules.age":"16岁以下<br>禁止使用","rules.solo":"仅限<br>单人乘坐",
       "rules.helmet":"建议佩戴<br>头盔","rules.alcohol":"饮酒后<br>禁止驾驶",
@@ -1214,11 +1193,10 @@
       "faq2.q":"车辆无法行驶","faq2.a1":"请先确认以下事项。","faq2.li1":"中置支架是否已收起？","faq2.li2":"电源是否已开启？","faq2.li3":"是否缓慢转动了油门？",
       "faq3.q":"速度很慢","faq3.a1":"可能是电池电量不足。","faq3.a2":"电量不足时，输出功率和速度可能会降低。",
       "faq4.q":"雨天可以使用吗？","faq4.a1":"即使是小雨，也需要特别注意路面状况。","faq4.a2":"大雨或湿滑路面请勿使用。",
-      "faq5.q":"可以双人乘坐吗？","faq5.a1":"不可以。本车辆为<strong>单人乘坐专用</strong>，额定乘员为1人。",
-      "footer":"HUV 使用指南 &nbsp;·&nbsp; 如有疑问，请随时咨询工作人员"
+      "faq5.q":"可以双人乘坐吗？","faq5.a1":"不可以。本车辆为<strong>单人乘坐专用</strong>，额定乘员为1人。"
     },
     ko: {
-      "nav.logo":"HUV 가이드","nav.check":"승차 전 확인","nav.howto":"기본 사용법","nav.faq":"자주 묻는 질문",
+      "nav.check":"승차 전 확인","nav.howto":"기본 사용법","nav.faq":"자주 묻는 질문",
       "hero.title":"사용 방법 및 자주 묻는 질문","hero.sub":"이용 전에 기본 규칙, 조작 방법, 자주 묻는 질문을 확인해 주세요.",
       "rules.header":"이용 규칙","rules.age":"16세 미만은<br>이용 불가","rules.solo":"1인 탑승<br>전용",
       "rules.helmet":"헬멧 착용을<br>권장합니다","rules.alcohol":"음주 후<br>운전 금지",
@@ -1241,8 +1219,7 @@
       "faq2.q":"차량이 움직이지 않습니다","faq2.a1":"먼저 다음 항목을 확인해 주세요.","faq2.li1":"센터 스탠드가 올라가 있는지","faq2.li2":"전원이 켜져 있는지","faq2.li3":"스로틀을 천천히 돌리고 있는지",
       "faq3.q":"속도가 느립니다","faq3.a1":"배터리 잔량이 부족할 수 있습니다.","faq3.a2":"배터리가 부족하면 출력과 속도가 떨어질 수 있습니다.",
       "faq4.q":"우천 시에도 사용할 수 있나요?","faq4.a1":"가랑비에도 노면 상황에 충분히 주의가 필요합니다.","faq4.a2":"강한 비나 미끄러운 노면에서는 이용하지 마세요.",
-      "faq5.q":"2인 탑승이 가능한가요?","faq5.a1":"불가능합니다. <strong>1인 탑승 전용</strong>입니다. 정격 탑승 인원은 1명입니다.",
-      "footer":"HUV 가이드 &nbsp;·&nbsp; 궁금한 점은 스태프에게 편하게 문의해 주세요"
+      "faq5.q":"2인 탑승이 가능한가요?","faq5.a1":"불가능합니다. <strong>1인 탑승 전용</strong>입니다. 정격 탑승 인원은 1명입니다."
     }
   };
 
